@@ -37,9 +37,9 @@ _So here it is_
       - extract features and correlation from the user-item matrix. This method shrinks the space dimension from N-dimension to K-dimension and reduces the number of features.
       - SVD constructs a matrix with the row of users and columns of items and the elements are given by the users’ ratings.
       - Singular value decomposition decomposes a matrix into three other matrices and extracts the factors from the factorization of a high-level (user-item-rating) matrix:
-            U: ortogonal matrix of users made of left singular vectors
-            S: diagonal matrix of each latent factor
-            Vt: ortogonal matrix of movies made of right singular vectors
+            - U: ortogonal matrix of users made of left singular vectors
+            - S: diagonal matrix of each latent factor
+            - Vt: ortogonal matrix of movies made of right singular vectors
       - problems : lack of sparsity of U, Vt -> high computation, hard to interpret as singular vectors are linear combinations
       - but gives a better approximate
         ##### How I implement SVD
@@ -50,10 +50,16 @@ _So here it is_
              - To compute k-svd we would take the only first k eigenvectors and eigenvalues
     ### Alghoritm set up
      - from the user-item matrix that i have, i would first normalise the matrix then i perform svd and by that i get a matrix of users, features( the strenghets which applies) and movies
-     - first diagram
      - Visualizing the latent factors (U,Vt) to view relationships between users and items
      - visualize how movies contribute to each latent factor
     ### Matrix reconsituition
+     - I apply SVD to the normalized filtered user-item matrix created from the data i scraped from letterboxd where columns are movies and rows user, populated with the given ratings
+     - Then I reconstruct the matrix , create a dataFrame of the predicted data and return relative error meaning the norm_difference/norm_original
+    ### Predictions
+     - First, I predict recommend movies unseen by a random user in my dataset.
+     - Then I make predictions for any user in my dataset, where i scrape his data, append it to my dataset and perform SVD once again.
+     - In this way my dataset gets trained by every user that inputs data
+
 
         
 
